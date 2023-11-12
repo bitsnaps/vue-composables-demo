@@ -1,7 +1,20 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
+import { ref } from 'vue'
+import { useTitle } from '@vueuse/core'
+import { useRefHistory } from '@vueuse/core'
 import HelloWorld from './components/HelloWorld.vue'
+
+
+const title = useTitle('Home', {titleTemplate: 'Vite & Vue3 App'})
+
+// Manage Redo/Undo history
+const state = ref({})
+const { undo } = useRefHistory(state, {
+  deep: true,
+  capacity: 15
+})
 </script>
 
 <template>
